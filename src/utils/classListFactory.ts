@@ -17,7 +17,6 @@ export function classListFactory(styles: Record<string, string>) {
   return function cl(...classNames: string[]): string {
     return classNames
       .flatMap((name) => {
-        console.log(styles)
         const hashed = styles[name];
         return hashed ? [name, hashed] : [name];
       })
