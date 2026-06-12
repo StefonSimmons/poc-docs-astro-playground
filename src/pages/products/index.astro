@@ -1,0 +1,20 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const prodDocs = await getCollection("productDocumentation");
+const paths = prodDocs.map(page => ({
+    params: { id: page.id },
+    props: { page },
+}));
+---
+<Layout>
+    <h1>Product Documentation</h1>
+    <ul>
+        {paths.map(({ params, props }) => (
+            <li>
+                <a href={`/products/${params.id}`}>{props.page.data.title}</a>
+            </li>
+        ))}
+    </ul>
+</Layout>
